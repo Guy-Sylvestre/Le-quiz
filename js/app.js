@@ -5,7 +5,7 @@ const emojis = ['✔️','✨','👀','😭','👎'];
 const titreResultat = document.querySelector(".resultats h2"); 
 const noteResultat = document.querySelector(".note");
 const aideResultat = document.querySelector(".aide");
-const toutesLesQuestions = document.querySelector(".question-block");
+const toutesLesQuestions = document.querySelectorAll(".question-block");
 let veryArray = [];
 
 
@@ -36,7 +36,9 @@ function verifyFunction(tabResultats){
         }
     }
 
+    console.log(veryArray);
     afficherResultats(veryArray);
+    couleursFonction(veryArray);
     veryArray = [];
 }
 
@@ -82,3 +84,40 @@ function afficherResultats(tabCheck){
 
     }
 }
+
+
+function couleursFonction(tabValBool) {
+
+    for (let j = 0; j < tabValBool.length; j++){
+
+        if(tabValBool[j] === true){
+
+            toutesLesQuestions[j].style.background = "lightgreen";
+
+        }else{
+
+            toutesLesQuestions[j].style.background = "#ffb8b8";
+            toutesLesQuestions[j].classList.add('echec');
+
+            setTimeout(() => {
+                toutesLesQuestions[j].classList.remove("echec");
+            }, 500)
+        }
+    }
+}
+
+
+toutesLesQuestions.forEach(item => {
+    item.addEventListener("click", () =>{
+        item.style.background = "#fff";
+    })
+})
+
+
+
+
+
+
+
+
+
